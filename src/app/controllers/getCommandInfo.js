@@ -13,6 +13,10 @@ function getCommandInfo(str) {
     		commandInfo.push(commandArr[i]);
     	}
     }
+	flags = flags.filter((elem, index, self) => {
+		return index == self.indexOf(elem);
+	});
+
     return [command, flags, commandInfo];
 }
 

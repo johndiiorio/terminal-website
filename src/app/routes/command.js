@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-getCommandInfo = require('../controllers/getCommandInfo');
+let getCommandInfo = require('../controllers/getCommandInfo');
 
 /* command called */
 router.post('/', (req, res) => {

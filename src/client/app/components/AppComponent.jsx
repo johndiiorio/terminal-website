@@ -21,7 +21,7 @@ export default class TerminalComponent extends React.Component {
 	        <div>
 	        {
         		this.state.lines.map((line, index) => {
-            		return <div key={index}>{line}</div>;
+                    { return <LineComponent key={index} {...line}/> }
           		})
         	}
 	        </div>

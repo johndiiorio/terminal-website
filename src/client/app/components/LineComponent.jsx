@@ -6,14 +6,6 @@ export default class LineComponent extends React.Component {
 	
 	constructor(props) {
 	    super(props);
-	    this.state = {
-	    	active: true
-	    };
-	   	this.disable = this.disable.bind(this);
-  	}
-
-  	disable() {
-  		this.state.active = false;
   	}
 
 	render() {

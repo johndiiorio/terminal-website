@@ -10,7 +10,8 @@ export default class InputComponent extends React.Component {
 	handleSubmit(e) {
 		if (e.charCode == 13) { // enter key pressed
 			axios.post('/api/command', {
-				command: e.target.value
+				command: e.target.value,
+				path: this.props.path
 			})
 			.then(function (response) {
 				console.log(response.data);

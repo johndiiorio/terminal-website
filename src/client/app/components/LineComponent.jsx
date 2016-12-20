@@ -6,12 +6,15 @@ export default class LineComponent extends React.Component {
 	
 	constructor(props) {
 	    super(props);
+	    this.state= {
+	    	path: "/home/johndiiorio/"
+        };
   	}
 
 	render() {
 		return (
 			<div>
-				<PromptComponent name="user" path="~/Projects" /><InputComponent />
+				<PromptComponent name="user" path={this.state.path} /><InputComponent path={this.state.path} />
 		  	</div>
 		);
 	}

@@ -17,6 +17,8 @@ router.post('/', (req, res) => {
             output =  handleCommand.pingCommand(); break;
         case "cd":
             output =  handleCommand.cdCommand(); break;
+        case "pwd":
+            output = handleCommand.pwdCommand(); break;
         case "sort":
             output =  handleCommand.sortCommand(); break;
         case "exit":

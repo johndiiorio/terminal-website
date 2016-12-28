@@ -14,15 +14,26 @@ class HandleCommand {
         pathStrArr = pathStrArr.filter((elem, index, self) => {
             return index == self.indexOf(elem);
         });
-        // path is "/", return entire structure
-        if (pathStrArr.length == 1) return structure["/"];
         let contents = structure["/"];
         // skip root directory so start at 1
         for (let i = 1; i < pathStrArr.length; i++) {
             let tmpPath = pathStrArr[i];
             contents = contents[tmpPath];
         }
-        return contents;
+        let lsContents = {
+            "directories": [],
+            "files": []
+        };
+        for (let prop in contents) {
+            if (typeof contents[prop] == "object") {
+                lsContents["directories"].push(prop);
+            } else {
+                let tmpObj = {};
+                tmpObj[prop] = contents[prop];
+                lsContents["files"].push(tmpObj);
+            }
+        }
+        return lsContents;
     }
 
     catCommand() {
@@ -34,6 +45,10 @@ class HandleCommand {
     }
 
     cdCommand() {
+
+    }
+
+    pwdCommand() {
 
     }
 

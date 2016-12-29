@@ -28,9 +28,7 @@ class HandleCommand {
             if (typeof contents[prop] == "object") {
                 lsContents["directories"].push(prop);
             } else {
-                let tmpObj = {};
-                tmpObj[prop] = contents[prop];
-                lsContents["files"].push(tmpObj);
+                lsContents["files"].push(prop);
             }
         }
         return lsContents;
@@ -69,7 +67,7 @@ class HandleCommand {
     }
 
     defaultCase() {
-
+        return "Command not found";
     }
 }
 

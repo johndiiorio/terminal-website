@@ -12,16 +12,15 @@ export default class TerminalComponent extends React.Component {
   	}
 
   	addLine() {
-  		this.state.lines.push(<LineComponent />);
-  		this.forceUpdate();
-  	}
+        this.setState({lines: this.state.lines.concat(<LineComponent key={this.state.lines.length}/>)});
+    }
 
 	render() {
 		return (
 	        <div>
 	        {
         		this.state.lines.map((line, index) => {
-                    { return <LineComponent key={index} {...line}/> }
+                    { return <LineComponent key={index} {...line} addLine={this.addLine} /> }
           		})
         	}
 	        </div>

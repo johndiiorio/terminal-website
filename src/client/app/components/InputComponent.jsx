@@ -4,22 +4,6 @@ export default class InputComponent extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	handleSubmit(e) {
-		if (e.charCode == 13) { // enter key pressed
-			axios.post('/api/command', {
-				command: e.target.value,
-				path: this.props.path
-			})
-			.then(function (response) {
-				console.log(response.data);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		}
 	}
 
 	render() {
@@ -36,7 +20,7 @@ export default class InputComponent extends React.Component {
 
 		return (
 			<span>
-				<input style={inputStyle} onKeyPress={this.handleSubmit} type="text" size="100"></input>
+				<input autoFocus style={inputStyle} onKeyPress={this.props.handleSubmit} type="text" size="100"/>
 			</span>
 		);
 	}

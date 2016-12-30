@@ -6,7 +6,7 @@ let HandleCommand = require('../controllers/HandleCommand');
 /* command called */
 router.post('/', (req, res) => {
 	let command = getCommandInfo(req.body.command);
-    let handleCommand = new HandleCommand(command, req.body.path);
+    let handleCommand = new HandleCommand(command, req.body.path); // req.body.path is current working directory
     let output = "";
     switch (command[0]) {
         case "ls":

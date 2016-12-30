@@ -12,22 +12,33 @@ export default class OutputComponent extends React.Component {
             paddingRight: "15px",
             color: "#6391ff"
         };
-        const filesStyle = {
+        const textStyle = {
             display: "inline",
             paddingRight: "15px",
             color: "#c3c3c3"
         };
 
+        let data = this.props.outputData;
+        let text = [];
+        let directories = [];
+        for (let i in data) {
+            if (Object.keys(data[i])[0] == "directory") {
+                directories.push(data[i]["directory"]);
+            } else if (Object.keys(data[i])[0] == "text") {
+                text.push(data[i]["text"]);
+            } else {} // Nothing returned or unexpected return value
+        }
+
         return (
             <div>
                 {
-                    this.props.outputData.directories.map((name, index) => {
+                    directories.map((name, index) => {
                         return <li style={directoriesStyle} key={index}>{name}</li>
                     })
                 }
                 {
-                    this.props.outputData.files.map((name, index) => {
-                        return <li style={filesStyle} key={index}>{name}</li>
+                    text.map((name, index) => {
+                        return <li style={textStyle} key={index}>{name}</li>
                     })
                 }
             </div>

@@ -4,7 +4,12 @@ const structure = {
             "johndiiorio":{
                 "Documents": {},
                 "Pictures": {},
-                "Projects": {},
+                "Projects": {
+                    "Cool Project.txt": "Test project",
+                    "Another cool project.txt": "Test project 2",
+                    "A boring terminal project": "Press return to begin",
+                    "Tensorflow Project": "Some random text here",
+                },
                 "readme.txt": "README file",
             },
             "lost+found":{}

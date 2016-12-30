@@ -28,7 +28,7 @@ export default class LineComponent extends React.Component {
             document.activeElement.disabled = true;
             this.props.addLine();
             axios.post('/api/command', {
-                command: e.target.value,
+                command: e.target.value.trim(),
                 path: this.state.path
             })
 			.then((response) => {

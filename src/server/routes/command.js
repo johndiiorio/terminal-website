@@ -21,8 +21,6 @@ router.post('/', (req, res) => {
             output = handleCommand.pwdCommand(); break;
         case "sort":
             output =  handleCommand.sortCommand(); break;
-        case "exit":
-            output =  handleCommand.exitCommand(); break;
         case "man":
             output =  handleCommand.manCommand(); break;
         case "sudo":

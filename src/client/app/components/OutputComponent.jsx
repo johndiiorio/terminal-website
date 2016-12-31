@@ -10,12 +10,14 @@ export default class OutputComponent extends React.Component {
         const directoriesStyle = {
             display: "inline",
             paddingRight: "15px",
-            color: "#6391ff"
+            color: "#6391ff",
+            whiteSpace: 'pre-wrap'
         };
         const textStyle = {
             display: "inline",
             paddingRight: "15px",
-            color: "#c3c3c3"
+            color: "#c3c3c3",
+            whiteSpace: 'pre-wrap'
         };
 
         let data = this.props.outputData;

@@ -1,4 +1,5 @@
 let structure = require("../models/model");
+let manPages = require("../models/manPages");
 
 class HandleCommand {
     constructor(commandArgs, cwd) {
@@ -14,13 +15,22 @@ class HandleCommand {
         if (this.commandInfo.length > 0) {
             this.path = this.commandInfo[0];
         }
+        // handle "." and ".." paths
+        if (this.path == ".") {
+            this.path = this.cwd;
+        } else if (this.path == "..") {
+            let tmpArr = this.cwd.split("/");
+            tmpArr.length = tmpArr.length - 2;
+            this.path = tmpArr.join("/");
+        }
         // split on "/" and remove empty elements
         let pathStrArr = this.path.split("/");
         pathStrArr = pathStrArr.filter((elem, index, self) => {
             return index == self.indexOf(elem);
         });
-        // relative path
-        if (pathStrArr.length == 1) {
+        if (pathStrArr.length == 1 && pathStrArr[0] == '') { // path is "/"
+            pathStrArr[0] = "/"
+        } else if (pathStrArr.length == 1) { // relative path
             pathStrArr = this.cwd.split("/");
             pathStrArr[pathStrArr.length - 1] = this.path;
         }
@@ -31,7 +41,7 @@ class HandleCommand {
             contents = contents[tmpPath];
         }
         if (!contents) {
-            return ([{"text": "ls: cannot access " + this.path + ": No such file or directory"}]);
+            return [{"text": "ls: cannot access " + this.path + ": No such file or directory"}];
         }
         let lsContents = [];
         for (let prop in contents) {
@@ -57,19 +67,26 @@ class HandleCommand {
     }
 
     pwdCommand() {
-
+        if (this.commandInfo.length != 0) {
+            return [{"text": "Too many arguments"}];
+        }
+        return [{"text": this.path}];
     }
 
     sortCommand() {
 
     }
 
-    exitCommand() {
-
-    }
-
     manCommand() {
-
+        if (this.commandInfo.length == 0) {
+            return [{"text": "Which man page do you want?"}];
+        }
+        let page = manPages[this.commandInfo[0]];
+        if (page) {
+            return ([{"text": page}]);
+        } else {
+            return [{"text": "No manuel entry for " + this.commandInfo[0]}];
+        }
     }
 
     sudoCommand() {
@@ -77,7 +94,7 @@ class HandleCommand {
     }
 
     defaultCase() {
-        return ([{"text": "Command not found"}]);
+        return [{"text": "Command not found"}];
     }
 }
 

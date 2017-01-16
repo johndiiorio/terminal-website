@@ -5,7 +5,7 @@ const structure = {
                 "Documents": {},
                 "Pictures": {},
                 "Projects": {
-                    "Cool Project.txt": "Test project",
+                    "Cool-Project.txt": "Test project",
                     "Another cool project.txt": "Test project 2",
                     "A boring terminal project": "Press return to begin",
                     "Tensorflow Project": "Some random text here",

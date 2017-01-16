@@ -27,18 +27,23 @@ export default class LineComponent extends React.Component {
         if (e.charCode == 13) { // enter key pressed
             document.activeElement.disabled = true;
             this.props.addLine();
-            axios.post('/api/command', {
-                command: e.target.value.trim(),
-                path: this.state.path
-            })
-			.then((response) => {
-				this.setState({
-					outputData: response.data
+            let command = e.target.value.trim().toLowerCase();
+            if (command == "clear") {
+                open(location, '_self').close();
+            } else {
+                axios.post('/api/command', {
+                    command: command,
+                    path: this.state.path
+                })
+				.then((response) => {
+					this.setState({
+						outputData: response.data
+					});
+				})
+				.catch((error) => {
+					console.log(error);
 				});
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+            }
         }
     }
 

@@ -1,24 +1,30 @@
-let webpack = require('webpack');
-let path = require('path');
-
-let BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-let APP_DIR = path.resolve(__dirname, 'src/client/app');
+const path = require('path');
 
 let config = {
-  entry: APP_DIR + '/index.jsx',
+  entry: './src/index.jsx',
   output: {
-    path: BUILD_DIR,
+    path: path.resolve(__dirname, 'public/dist'),
     filename: 'bundle.js'
   },
-  module : {
-    loaders : [
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel'
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
-  }
+  },
+  plugins: [],
 };
+
+if (process.env.NODE_ENV === 'production') {
+	// TODO
+}
 
 module.exports = config;

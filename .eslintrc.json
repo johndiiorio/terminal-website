@@ -1,0 +1,27 @@
+{
+	"extends": "airbnb",
+	"plugins": [
+		"react",
+		"import",
+		"jsx-a11y"
+	],
+	"rules": {
+		"no-tabs": 0,
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"arrow-body-style": ["error", "as-needed"],
+		"arrow-parens": ["error", "as-needed"],
+		"radix": ["error", "as-needed"],
+		"no-useless-constructor": ["warn"],
+		"no-plusplus": 0,
+		"no-lonely-if": 0,
+		"no-else-return": 0,
+		"react/jsx-indent": ["error", "tab"],
+		"react/destructuring-assignment": 0,
+		"react/jsx-one-expression-per-line": 0,
+		"react/no-array-index-key": 0,
+		"react/no-direct-mutation-state": ["error"],
+		"react/sort-comp": ["off"],
+		"react/sort-prop-types": "off",
+		"react/prop-types": "off"
+	}
+}

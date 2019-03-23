@@ -6,9 +6,10 @@ export const UPDATE_LINE_INPUT = 'UPDATE_LINE_INPUT';
 export const UPDATE_LINE_OUTPUT = 'UPDATE_LINE_OUTPUT';
 export const CLEAR_LINES = 'CLEAR_LINES';
 
-export const addLine = () => ({
+export const addLine = path => ({
 	type: ADD_LINE,
 	id: nextLineId++,
+	path,
 });
 
 export const updateSelectedLine = id => ({

@@ -4,7 +4,6 @@ const newLine = {
 	inputText: '',
 	output: '',
 	path: '/home/johndiiorio/',
-	active: true,
 };
 
 const initialState = {
@@ -17,10 +16,10 @@ export default function terminalApp(state = initialState, action) {
 		case actions.ADD_LINE:
 			return {
 				...state,
-				lines: state.lines.map(line => ({
-					...line,
-					active: false,
-				})).concat(newLine),
+				lines: state.lines.concat({
+					...newLine,
+					path: action.path || state.lines[state.selectedLine].path,
+				}),
 				selectedLine: state.lines.length,
 			};
 		case actions.UPDATE_SELECTED_LINE:

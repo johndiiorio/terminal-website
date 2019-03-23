@@ -20,11 +20,12 @@ function getCommandInfo(str) {
 	return { command, flags, commandInfo };
 }
 
-export default function executeCommandStr(commandStr, cwd) {
+export default function executeCommandStr(commandStr, cwd, dispatch) {
 	const { command, flags, commandInfo } = getCommandInfo(commandStr);
 	return commands[command] ? commands[command]({
 		flags,
 		commandInfo,
 		cwd,
+		dispatch,
 	}) : commands.defaultCase();
 }

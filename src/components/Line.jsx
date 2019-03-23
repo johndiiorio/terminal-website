@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLine, clearLines, updateLineOutput } from '../actions';
+import { addLine, updateLineOutput } from '../actions';
 import Input from './Input';
 import Prompt from './Prompt';
 import Output from './Output';
@@ -9,11 +9,8 @@ import executeCommand from '../parser/executeCommand';
 function Line(props) {
 	const onSubmit = value => {
 		const command = value.trim();
-		if (command === 'clear') {
-			props.dispatch(clearLines());
-			// TODO clear lines should keep the path of the previously selected line
-		} else {
-			const output = executeCommand(command, props.path);
+		const output = executeCommand(command, props.path, props.dispatch);
+		if (!output || !output.noop) {
 			props.dispatch(updateLineOutput(props.id, output));
 			props.dispatch(addLine());
 		}

@@ -1,4 +1,3 @@
-import { isObject } from 'lodash';
 import { getContents } from '../utils';
 
 export default function({ commandInfo, cwd }) {
@@ -13,8 +12,9 @@ export default function({ commandInfo, cwd }) {
 	if (!contents) {
 		return [{ text: `cat: ${path}: No such file or directory` }];
 	}
-	if (isObject('object')) {
+	if (contents.directories) {
 		return [{ text: `cat: ${path}: Is a directory` }];
 	}
-	return [{ text: contents }];
+	const files = contents.files;
+	return [{ text: files[Object.keys(files)[0]].contents }];
 }

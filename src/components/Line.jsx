@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLine, updateLineOutput } from '../actions';
+import { addLine, updateLineOutput, addCommandToHistory } from '../actions';
 import Input from './Input';
 import Prompt from './Prompt';
 import Output from './Output';
@@ -9,10 +9,15 @@ import executeCommand from '../parser/executeCommand';
 function Line(props) {
 	const onSubmit = value => {
 		const command = value.trim();
-		const output = executeCommand(command, props.path, props.dispatch);
-		if (!output || !output.noop) {
-			props.dispatch(updateLineOutput(props.id, output));
+		if (!command) {
 			props.dispatch(addLine());
+		} else {
+			props.dispatch(addCommandToHistory(command));
+			const output = executeCommand(command, props.path, props.dispatch);
+			if (!output || !output.noop) {
+				props.dispatch(updateLineOutput(props.id, output));
+				props.dispatch(addLine());
+			}
 		}
 	};
 
@@ -22,7 +27,13 @@ function Line(props) {
 	return (
 		<div style={divStyle}>
 			<Prompt name="user" path={props.path} />
-			<Input id={props.id} isSelected={props.isSelected} value={props.inputText} onSubmit={onSubmit} />
+			<Input
+				id={props.id}
+				isSelected={props.isSelected}
+				value={props.inputText}
+				numBackInCommandHistory={props.numBackInCommandHistory}
+				onSubmit={onSubmit}
+			/>
 			<Output id={props.id} outputData={props.output} />
 		</div>
 	);

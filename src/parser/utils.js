@@ -1,13 +1,16 @@
 import structure from './resources/structure';
+import { HOME_PATH } from '../constants';
 
 export function getAbsolutePath(path, cwd) {
 	if (!path) {
 		return null;
 	}
-	const splitPath = path.split('/').filter(p => p !== '');
+
+	const pathHandledTilda = path.split('~').join(HOME_PATH);
+	const splitPath = pathHandledTilda.split('/').filter(p => p !== '');
 	const splitCwd = cwd.split('/').filter(p => p !== '');
 
-	const isAbsolutePath = path.startsWith('/');
+	const isAbsolutePath = pathHandledTilda.startsWith('/');
 	const startPoint = isAbsolutePath ? [] : splitCwd;
 
 	const absolutePath = startPoint;

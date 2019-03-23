@@ -11,9 +11,6 @@ AUTHOR
 	cat: `
     
         `,
-	ping: `
-        
-        `,
 	cd: `
 
         `,
@@ -27,9 +24,6 @@ DESCRIPTION
     Print the full filename of the current working directory.
 AUTHOR
     Wrriten by John DiIorio.`,
-	sort: `
-
-        `,
 	man:
 `NAME
     man - an interface to the on-line reference manuals
@@ -42,7 +36,4 @@ DESCRIPTION
     man to look only in that section of the manual.
 AUTHOR
     Written by John DiIorio.`,
-	sudo: `
-
-        `,
 };

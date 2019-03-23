@@ -8,8 +8,7 @@ import executeCommand from '../parser/executeCommand';
 
 function Line(props) {
 	const onSubmit = value => {
-		// TODO add line
-		const command = value.toLowerCase();
+		const command = value.trim();
 		if (command === 'clear') {
 			props.dispatch(clearLines());
 			// TODO clear lines should keep the path of the previously selected line
@@ -33,46 +32,3 @@ function Line(props) {
 }
 
 export default connect()(Line);
-
-// export default class LineComponent extends React.Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.handleSubmit = this.handleSubmit.bind(this);
-// 		this.state = {
-// 			path: '/home/johndiiorio/',
-// 			disabled: false,
-// 			outputData: {
-// 				directories: [],
-// 				files: [],
-// 			},
-// 		};
-// 	}
-
-// 	handleSubmit(e) {
-// 		if (e.charCode === 13) { // enter key pressed
-// 			document.activeElement.disabled = true;
-// 			this.props.addLine();
-// 			const command = e.target.value.trim().toLowerCase();
-// 			if (command === 'clear') {
-// 				open(location, '_self').close();
-// 			} else {
-// 				axios.post('/api/command', {
-// 					command,
-// 					path: this.state.path,
-// 				})
-// 					.then(response => {
-// 						this.setState({
-// 							outputData: response.data,
-// 						});
-// 					})
-// 					.catch(error => {
-// 						console.log(error);
-// 					});
-// 			}
-// 		}
-// 	}
-
-// 	render() {
-
-// 	}
-// }

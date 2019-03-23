@@ -1,8 +1,8 @@
-import HandleCommand from './HandleCommand';
+import * as commands from './commands';
 
 function getCommandInfo(str) {
 	const commandArr = str.split(' ');
-	const command = commandArr.shift();
+	const command = commandArr.shift().toLowerCase();
 	let flags = [];
 	const commandInfo = [];
 
@@ -17,32 +17,14 @@ function getCommandInfo(str) {
 	}
 	flags = flags.filter((elem, index, self) => index === self.indexOf(elem));
 
-	return [command, flags, commandInfo];
+	return { command, flags, commandInfo };
 }
 
-export default function executeCommand(command, path) {
-	const parsedCommand = getCommandInfo(command);
-	const handleCommand = new HandleCommand(parsedCommand, path);
-	let output = '';
-	switch (parsedCommand[0]) {
-		case 'ls':
-			output = handleCommand.lsCommand(); break;
-		case 'cat':
-			output = handleCommand.catCommand(); break;
-		case 'ping':
-			output = handleCommand.pingCommand(); break;
-		case 'cd':
-			output = handleCommand.cdCommand(); break;
-		case 'pwd':
-			output = handleCommand.pwdCommand(); break;
-		case 'sort':
-			output = handleCommand.sortCommand(); break;
-		case 'man':
-			output = handleCommand.manCommand(); break;
-		case 'sudo':
-			output = handleCommand.sudoCommand(); break;
-		default:
-			output = handleCommand.defaultCase(); break;
-	}
-	return output;
+export default function executeCommandStr(commandStr, cwd) {
+	const { command, flags, commandInfo } = getCommandInfo(commandStr);
+	return commands[command] ? commands[command]({
+		flags,
+		commandInfo,
+		cwd,
+	}) : commands.defaultCase();
 }

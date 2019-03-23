@@ -17,6 +17,7 @@
     "eslint-plugin-import": "~2.16.0",
     "eslint-plugin-jsx-a11y": "~6.2.1",
     "eslint-plugin-react": "~7.12.4",
+    "lodash": "~4.17.11",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "~6.0.1",

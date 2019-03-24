@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Output(props) {
+export default function Output({ outputData }) {
 	const directoriesStyle = {
 		display: 'inline',
 		paddingRight: '15px',
@@ -13,25 +13,35 @@ export default function Output(props) {
 		color: '#c3c3c3',
 		whiteSpace: 'pre-wrap',
 	};
+	const pictureStyle = {
+		display: 'inline',
+		maxHeight: 400,
+		maxWidth: 400,
+	};
 
-	const data = props.outputData;
 	const text = [];
 	const directories = [];
-	for (const i in data) {
-		if (Object.keys(data[i])[0] == 'directory') {
-			directories.push(data[i].directory);
-		} else if (Object.keys(data[i])[0] == 'text') {
-			text.push(data[i].text);
-		} else { } // Nothing returned or unexpected return value
-	}
+	const images = [];
+	outputData.forEach(data => {
+		if (data.type === 'directory') {
+			directories.push(data.value);
+		} else if (data.type === 'text') {
+			text.push(data.value);
+		} else if (data.type === 'image') {
+			images.push(data.value);
+		}
+	});
 
 	return (
 		<div>
 			{
-				directories.map((name, index) => <li style={directoriesStyle} key={index}>{name}</li>)
+				directories.map((value, index) => <li style={directoriesStyle} key={index}>{value}</li>)
 			}
 			{
-				text.map((name, index) => <li style={textStyle} key={index}>{name}</li>)
+				text.map((value, index) => <li style={textStyle} key={index}>{value}</li>)
+			}
+			{
+				images.map((value, index) => <img style={pictureStyle} key={index} src={value} alt="" />)
 			}
 		</div>
 	);

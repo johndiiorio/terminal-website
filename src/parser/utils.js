@@ -62,3 +62,13 @@ export function getContents(path, cwd) {
 	}
 	return isError ? null : currentStructure;
 }
+
+export function getExecutableMessage() {
+	const userAgent = navigator.userAgent;
+	return `64-bit JS executable, x86-64, version 1, dynamically linked, for ${userAgent}`;
+}
+
+export function getNonStandardCommandNames() {
+	const commands = structure.directories.usr.directories.bin.files;
+	return Object.keys(commands).filter(c => commands[c].nonStandard);
+}

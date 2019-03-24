@@ -10,11 +10,16 @@ export default function({ commandInfo, cwd }) {
 	}
 	const contents = getContents(pathOrCwd, cwd);
 	if (!contents) {
-		return [{ type: 'text', value: `cat: ${path}: No such file or directory` }];
+		return [{ type: 'text', value: `pic: ${path}: No such file or directory` }];
 	}
 	if (contents.directories) {
-		return [{ type: 'text', value: `cat: ${path}: Is a directory` }];
+		return [{ type: 'text', value: `pic: ${path}: Is a directory` }];
 	}
 	const files = contents.files;
-	return [{ type: 'text', value: files[Object.keys(files)[0]].contents }];
+	const fileName = Object.keys(files)[0];
+	const file = files[fileName];
+	if (file.type !== 'image') {
+		return [{ type: 'text', value: `pic: ${path}: Is not an image` }];
+	}
+	return [{ type: 'image', value: file.contents }];
 }

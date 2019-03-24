@@ -3597,6 +3597,11 @@ react-redux@~6.0.1:
     prop-types "^15.7.2"
     react-is "^16.8.2"
 
+react-useinterval@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-useinterval/-/react-useinterval-1.0.1.tgz#4bb90349d18b0fc04d6567edacf476d515b5cf49"
+  integrity sha512-+UxgKd7p7D3cBS6/o2uwBStsFcoKIagRdN21so/ud1k1e6r4WDCHsSjY36aT3n6WvVgpZPk3JtbN4IFfxt69Pg==
+
 react@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
@@ -4330,6 +4335,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+ua-parser-js@~0.7.19:
+  version "0.7.19"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
+  integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

@@ -1,6 +1,6 @@
 export default function({ commandInfo, cwd }) {
 	if (commandInfo.length > 0) {
-		return [{ text: 'Too many arguments' }];
+		return [{ type: 'text', value: 'Too many arguments' }];
 	}
-	return [{ text: cwd }];
+	return [{ type: 'text', value: cwd }];
 }

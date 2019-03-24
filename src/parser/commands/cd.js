@@ -14,8 +14,8 @@ export default function({ commandInfo, cwd, dispatch }) {
 		dispatch(addLine(newPath));
 		return { noop: true };
 	} else if (contents && contents.files) {
-		return [{ text: `cd: not a directory: ${path}` }];
+		return [{ type: 'text', value: `cd: not a directory: ${path}` }];
 	} else {
-		return [{ text: `cd: no such file or directory: ${path}` }];
+		return [{ type: 'text', value: `cd: no such file or directory: ${path}` }];
 	}
 }

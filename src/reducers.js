@@ -3,7 +3,7 @@ import { HOME_PATH } from './constants';
 
 const newLine = {
 	inputText: '',
-	output: '',
+	output: [],
 	path: HOME_PATH,
 	numBackInCommandHistory: 0,
 };

@@ -18,10 +18,10 @@ export default function({ commandInfo, cwd }) {
 	const files = contents.files || {};
 	const lsContents = [];
 	Object.keys(directories).forEach(directoryName => {
-		lsContents.push({ directory: directoryName });
+		lsContents.push({ type: 'directory', value: directoryName });
 	});
 	Object.keys(files).forEach(fileName => {
-		lsContents.push({ text: fileName });
+		lsContents.push({ type: 'text', value: fileName });
 	});
 	return lsContents;
 }

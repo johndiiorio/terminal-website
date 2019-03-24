@@ -1,3 +1,3 @@
 export default function() {
-	return [{ text: 'Command not found' }];
+	return [{ type: 'text', value: 'Command not found' }];
 }

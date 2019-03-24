@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
+import useInterval from 'react-useinterval';
 import { updateLineInput, updateSelectedLine, updateNumBackInCommandHistory } from '../actions';
 
 function Input({ onSubmit, value, isSelected, numBackInCommandHistory, id, dispatch }) {
@@ -16,11 +17,11 @@ function Input({ onSubmit, value, isSelected, numBackInCommandHistory, id, dispa
 
 	const inputEl = useRef(null);
 
-	useEffect(() => {
-		if (isSelected) {
+	useInterval(() => {
+		if (inputEl && inputEl.current) {
 			inputEl.current.focus();
 		}
-	}, [isSelected]);
+	}, isSelected ? 50 : null);
 
 	const onKeyDown = e => {
 		if (e.keyCode === 13) { // Enter
@@ -42,24 +43,23 @@ function Input({ onSubmit, value, isSelected, numBackInCommandHistory, id, dispa
 
 	return (
 		<span>
-			<input
-				style={inputStyle}
-				onKeyDown={onKeyDown}
-				onChange={onChange}
-				onFocus={onFocus}
-				value={value}
-				type="text"
-				size="100"
-				ref={inputEl}
-			/>
+			{isSelected ? (
+				<input
+					style={inputStyle}
+					onKeyDown={onKeyDown}
+					onChange={onChange}
+					onFocus={onFocus}
+					value={value}
+					type="text"
+					size="100"
+					ref={inputEl}
+				/>
+			) : (
+				<span style={inputStyle}>{value}</span>
+			)}
 		</span>
+
 	);
 }
 
-const mapStateToProps = state => {
-	return {
-		commandHistory: state.commandHistory,
-	};
-}
-
-export default connect(mapStateToProps)(Input);
+export default connect()(Input);

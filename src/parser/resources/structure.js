@@ -1,4 +1,6 @@
-export default Object.freeze({
+const executableContents = btoa('Congratulations on finding this hidden easter egg');
+
+export default {
 	directories: {
 		home: {
 			directories: {
@@ -10,7 +12,12 @@ export default Object.freeze({
 						},
 						Pictures: {
 							directories: {},
-							files: {},
+							files: {
+								'Me.png': {
+									type: 'image',
+									contents: 'https://i.imgur.com/WtMRa3C.jpg',
+								},
+							},
 						},
 						Projects: {
 							directories: {},
@@ -33,7 +40,7 @@ export default Object.freeze({
 					files: {
 						'readme.txt': {
 							type: 'text',
-							contents: 'README file',
+							contents: 'Welcome to John DiIorio\'s terminal website. Type "help" for help.',
 						},
 					},
 				},
@@ -48,7 +55,49 @@ export default Object.freeze({
 			directories: {
 				bin: {
 					directories: {},
-					files: {},
+					files: {
+						cat: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						cd: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						clear: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						file: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						help: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						ls: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						man: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						pic: {
+							type: 'executable',
+							contents: executableContents,
+							nonStandard: true,
+						},
+						pwd: {
+							type: 'executable',
+							contents: executableContents,
+						},
+						whoami: {
+							type: 'executable',
+							contents: executableContents,
+						},
+					},
 				},
 				etc: {
 					directories: {},
@@ -131,4 +180,4 @@ export default Object.freeze({
 		},
 	},
 	files: {},
-});
+};
